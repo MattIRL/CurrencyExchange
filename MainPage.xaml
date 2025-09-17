@@ -5,7 +5,7 @@
 
     <!-- Setup definitions for the Grid -->
     <Grid>
-        <!-- Creating 7 defined Grid Rows -->
+        <!-- Creating 8 defined Grid Rows -->
         <Grid.RowDefinitions>
             <RowDefinition Height="185" />
             <RowDefinition Height="150" />
@@ -14,6 +14,7 @@
             <RowDefinition Height="75" />
             <RowDefinition Height="50" />
             <RowDefinition Height="185" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
     <!-- Creating 3 flexible Grid Columns -->
         <Grid.ColumnDefinitions>
@@ -53,7 +54,6 @@
             Margin="20,0"
             HorizontalTextAlignment="Start"               
             Text="Please select the conversion currency"
-            SemanticProperties.HeadingLevel="Level2"
             SemanticProperties.Description="usage instructions" />
         
         <Entry 
@@ -79,7 +79,7 @@
         
         <Label 
             Grid.Row="5"
-            Grid.Column="1"
+            Grid.ColumnSpan="3"
             HorizontalTextAlignment="Center"
             x:Name="CurrencyResult"
             Text="Click submit to calculate"
@@ -87,11 +87,18 @@
             TextColor="SpringGreen" />   
 
         <Image 
+            x:Name="roboImage"
             Grid.Row="6"
             Grid.ColumnSpan="3"
-            Source="https://www.robohash.org/CIT255.png"
             HeightRequest="185"
             Aspect="AspectFit" />
-            
+        
+        <Label
+            x:Name="roboName"
+            Grid.Row="7"
+            Grid.ColumnSpan="3"
+            HorizontalTextAlignment="Center"
+            Text="" />
+
     </Grid>
 </ContentPage>

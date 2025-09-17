@@ -33,8 +33,12 @@ namespace CurrencyExchange
                 return;
             }
 
+            //
+            decimal exchangeNumber = number;
+            decimal exchangeRate = 1;
+
             // Get selected currency
-            string selectedCurrency = CurrencyPicker.SelectedItem?.ToString();
+            string? selectedCurrency = CurrencyPicker.SelectedItem?.ToString();
 
             if (string.IsNullOrEmpty(selectedCurrency))
             {
@@ -43,7 +47,10 @@ namespace CurrencyExchange
             }
 
             // Display results
-            CurrencyResult.Text = $"{number} USD is worth {number} {selectedCurrency}.";
+            CurrencyResult.Text = $"{number} USD is worth {exchangeNumber} {selectedCurrency}. " +
+                $"That is an exchagne rate of 1:{exchangeRate}";
+            roboImage.Source = $"https://www.robohash.org/{exchangeNumber}{selectedCurrency}.png";
+            roboName.Text = $"This robot is named '{exchangeNumber} {selectedCurrency}'.";
         }
     }
 
