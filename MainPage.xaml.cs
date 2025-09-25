@@ -36,20 +36,14 @@ namespace CurrencyExchange
         {
 
             // Parse decimal from User Entry
-            if (!decimal.TryParse(ValueDecimal.Text, out decimal number))
+            if (!decimal.TryParse(ValueDecimal.Text, out decimal amount))
             {
                 CurrencyResult.Text = "Invalid decimal value. Please try again.";
                 return;
             }
 
-            //-------------------------------------------------------
-            // Placeholder for currency calculations and method calls
-            //-------------------------------------------------------
-            decimal exchangeNumber = number;
-            decimal exchangeRate = 1;
-
-
-            // Get selected currency
+            // Get selected currencies
+            string? fromCurrency = FromCurrencyPicker.SelectedItem?.ToString();
             string? ToCurrency = ToCurrencyPicker.SelectedItem?.ToString();
 
             if (string.IsNullOrEmpty(ToCurrency))
@@ -58,19 +52,18 @@ namespace CurrencyExchange
                 return;
             }
 
-            //-----------------------------
-            //Placeholder for Live API Call
-            //-----------------------------
-
-
             // Update text with JSON code
             apiResponseEditor.Text = "JSON code to go here...\n\nNMC CIT255 Rocks!";
 
+            decimal exchangeRate = 1;
+            decimal convertedAmount = amount;
+
             // Display results
-            CurrencyResult.Text = $"{number} USD is worth {exchangeNumber} {ToCurrency}. " +
-                $"That is an exchagne rate of 1:{exchangeRate}";
-            roboImage.Source = $"https://www.robohash.org/{exchangeNumber}{ToCurrency}.png";
-            roboName.Text = $"This robot is named '{exchangeNumber} {ToCurrency}'.";
+            CurrencyResult.Text = $"{amount} {fromCurrency} is worth {convertedAmount} {ToCurrency}. ";
+            AdditionalInfo.Text = $"That is an exchagne rate of 1:{exchangeRate}" + 
+                $"\nThis information is provided by\nNobody Yet!";
+            roboImage.Source = $"https://www.robohash.org/{convertedAmount}{ToCurrency}.png";
+            roboName.Text = $"This robot is named '{convertedAmount} {ToCurrency}'.";
         }
 
         // Show JSON button logic
