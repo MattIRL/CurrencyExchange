@@ -1,6 +1,4 @@
-﻿
-
-namespace CurrencyExchange
+﻿namespace CurrencyExchange
 {
     public partial class MainPage : ContentPage
     {
@@ -23,7 +21,6 @@ namespace CurrencyExchange
         // Placeholder for API related variables
         //--------------------------------------
 
-
         public MainPage()
         {
             InitializeComponent();
@@ -44,13 +41,17 @@ namespace CurrencyExchange
 
             // Get selected currencies
             string? fromCurrency = FromCurrencyPicker.SelectedItem?.ToString();
-            string? ToCurrency = ToCurrencyPicker.SelectedItem?.ToString();
+            string? toCurrency = ToCurrencyPicker.SelectedItem?.ToString();
 
-            if (string.IsNullOrEmpty(ToCurrency))
+            if (string.IsNullOrEmpty(toCurrency) || string.IsNullOrEmpty(toCurrency))
             {
                 CurrencyResult.Text = "Please select To and From currency.";
                 return;
             }
+
+            //----------------------------------
+            // Placeholder for API URL variables
+            //----------------------------------
 
             // Update text with JSON code
             apiResponseEditor.Text = "JSON code to go here...\n\nNMC CIT255 Rocks!";
@@ -59,11 +60,11 @@ namespace CurrencyExchange
             decimal convertedAmount = amount;
 
             // Display results
-            CurrencyResult.Text = $"{amount} {fromCurrency} is worth {convertedAmount} {ToCurrency}. ";
+            CurrencyResult.Text = $"{amount} {fromCurrency} is worth {convertedAmount} {toCurrency}. ";
             AdditionalInfo.Text = $"That is an exchagne rate of 1:{exchangeRate}" + 
                 $"\nThis information is provided by\nNobody Yet!";
-            roboImage.Source = $"https://www.robohash.org/{convertedAmount}{ToCurrency}.png";
-            roboName.Text = $"This robot is named '{convertedAmount} {ToCurrency}'.";
+            roboImage.Source = $"https://www.robohash.org/{convertedAmount}{toCurrency}.png";
+            roboName.Text = $"This robot is named '{convertedAmount} {toCurrency}'.";
         }
 
         // Show JSON button logic
